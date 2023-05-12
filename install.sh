@@ -3,16 +3,16 @@
 apppath=/usr/local/bin/easy-proxy-changer.sh
 function addNew {
   DEFAULT_PROXY="http://10.20.4.15:3128"
-  echo "Add proxy url: [ $DEFAULT_PROXY ]"
-  read PROXY_DIR
-  if [ "$PROXY_DIR" = "" ]
+  echo "Set proxy url: [ $DEFAULT_PROXY ]"
+  read NEW_PROXY_DIR
+  if [ "$NEW_PROXY_DIR" = "" ]
   then
-    PROXY_DIR="$DEFAULT_PROXY"
+    NEW_PROXY_DIR="$DEFAULT_PROXY"
   fi
   
   tee "$fileproxyurl" << EOF
 # Setting proxy!
-PROXY_DIR=$PROXY_DIR
+PROXY_DIR=$NEW_PROXY_DIR
 EOF
   echo "Modificated $fileproxyurl"
 }
