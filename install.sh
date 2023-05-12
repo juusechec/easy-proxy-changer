@@ -1,11 +1,6 @@
 #!/bin/bash
 
 apppath=/usr/local/bin/easy-proxy-changer.sh
-if [ -f $apppath ]
-then
-  echo "The script it's already installed in $apppath. Nothing to do."
-fi
- 
 function addNew {
   DEFAULT_PROXY="http://10.20.4.15:3128"
   echo "Add proxy url: [ $DEFAULT_PROXY ]"
@@ -17,7 +12,7 @@ function addNew {
   
   tee "$fileproxyurl" << EOF
 # Setting proxy!
-$PROXY_DIR
+PROXY_DIR=$PROXY_DIR
 EOF
   echo "Modificated $fileproxyurl"
 }
@@ -30,11 +25,10 @@ echo "File $fileproxyurl not found!"
   exit
 fi
 
-
   # rationale: Configuración del PROXY UDistrital
   sudo tee -a $apppath << 'EOF'
 if [ -z "$PROXY_DIR" ]; then
-  PROXY_DIR=http://10.20.4.15:3128
+  export $(grep -v '^#' fileproxyurl.conf | xargs -0)
 fi
 
 # rationale: agregar proxy a "apt-key adv"
