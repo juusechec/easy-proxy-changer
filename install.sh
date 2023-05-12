@@ -4,8 +4,8 @@ apppath=/usr/local/bin/easy-proxy-changer.sh
 if [ -f $apppath ]
 then
   echo "The script it's already installed in $apppath. Nothing to do."
-else
-
+fi
+ 
 function addNew {
   DEFAULT_PROXY="http://10.20.4.15:3128"
   echo "Add proxy url: [ $DEFAULT_PROXY ]"
