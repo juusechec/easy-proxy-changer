@@ -87,26 +87,18 @@ function proxy_bash {
   env | grep -i proxy
 }
 
-# rationale: muestra al usuario el estado actual del proxy
-# ponga aquí los demás testigos del cambio del proxy en su comando o entorno
-function proxy_status {
+
+function proxystatus {
   env | grep -i proxy
   npm config list | grep -i proxy
 }
 
-# rationale: agrega proxy a todo lo conocido y usado en el glud
-# si desea agregar proxy a aplicaciones, puede generar nuevas funciones
-# que validen la existencia del programa y establezcan su proxy con alias
-# u otras técnicas, hay varios ejemplos puestos
-# link: https://www.arin.net/knowledge/address_filters.html
-# link: https://wiki.archlinux.org/index.php/proxy_settings
 function proxy {
   proxy_bash
   proxy_apt_key
   proxy_npm
 }
 
-# rationale: desactivar el proxy a las aplicaciones y entornos anteriores
 function proxyoff {
   proxy_bash off
   proxy_apt_key off
